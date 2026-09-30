@@ -20,4 +20,4 @@ python -m http.server 4174 --bind 127.0.0.1
 
 ## 数据库
 
-数据库结构位于 `database/schema.sql`。当前前端为纯静态 Demo，状态保存在浏览器 localStorage；连接腾讯云 MySQL 后，需要新增后端 API 替换本地状态存储。
+数据库结构位于 `database/schema.sql`，样例岗位、商家和技能数据位于 `database/seed.sql`。当前前端为纯静态 Demo，状态保存在浏览器 localStorage；连接腾讯云 MySQL 后，需要新增后端 API 替换本地状态存储。

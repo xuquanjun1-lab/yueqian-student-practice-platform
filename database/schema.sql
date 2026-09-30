@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS employers (
   name VARCHAR(128) NOT NULL,
   verification_status ENUM('pending','verified','rejected') NOT NULL DEFAULT 'pending',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_employers_name (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS jobs (
@@ -54,6 +55,7 @@ CREATE TABLE IF NOT EXISTS jobs (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
+  UNIQUE KEY uq_jobs_employer_title (employer_id, title),
   KEY idx_jobs_listing (status, application_deadline),
   CONSTRAINT fk_jobs_employer FOREIGN KEY (employer_id) REFERENCES employers (id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
